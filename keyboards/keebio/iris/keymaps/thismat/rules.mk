@@ -1,0 +1,4 @@
+COMBO_ENABLE = yes
+LTO_ENABLE = yes
+MOUSEKEY_ENABLE = yes
+#VIA_ENABLE = yes
