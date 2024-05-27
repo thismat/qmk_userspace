@@ -74,11 +74,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // RGB Setup
 bool rgb_matrix_indicators_user(void) {
     switch (get_highest_layer(layer_state)) {
-        case (WIN_FN|MAC_FN):
+        case WIN_FN|MAC_FN:
             rgb_matrix_set_color_all(255, 209, 0);
             break;
-        case (GAMING):
+        case GAMING:
             rgb_matrix_set_color_all(0, 128, 255);
+            break;
+        case WIN_BASE|MAC_BASE:
+            rgb_matrix_mode(RGB_MATRIX_CYCLE_ALL);
             break;
     }
     return true;
