@@ -52,15 +52,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,    KC_RBRC,  KC_BSLS,            KC_PGDN,
         KC_LCTL,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,              KC_ENT,             KC_HOME,
         KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,  KC_UP,
-        MO(WIN_FN),  KC_LCMD,  KC_LALT,                                KC_SPC,                                 KC_RALT,  TG(GAMING), KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
+        KC_LCTL,  KC_LCMD,  KC_LALT,                                KC_SPC,                                 KC_RALT,  TG(GAMING), MO(WIN_FN),  KC_LEFT,  KC_DOWN,  KC_RGHT),
 
     [WIN_FN] = LAYOUT_ansi_82(
         _______,  KC_BRID,  KC_BRIU,  KC_TASK,  KC_FLXP,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,    KC_VOLU,  _______,            QK_BOOT,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,  _______,            _______,
         RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,    _______,  _______,            _______,
         _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,              _______,            _______,
-        _______,            _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,  _______,
-        _______,  _______,  _______,                                _______,                                _______,  _______,    _______,  _______,  _______,  _______),
+        _______,                                                     _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,  _______,
+        QK_CLEAR_EEPROM,  _______,  _______,                                _______,                                _______,  _______,    _______,  _______,  _______,  _______),
 
     [GAMING] = LAYOUT_ansi_82(
         KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,     KC_F12,   KC_DEL,             KC_END,
@@ -74,14 +74,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // RGB Setup
 bool rgb_matrix_indicators_user(void) {
     switch (get_highest_layer(layer_state)) {
-        case WIN_FN|MAC_FN:
+        case WIN_FN:
             rgb_matrix_set_color_all(255, 209, 0);
             break;
         case GAMING:
             rgb_matrix_set_color_all(0, 128, 255);
-            break;
-        case WIN_BASE|MAC_BASE:
-            rgb_matrix_mode(RGB_MATRIX_CYCLE_ALL);
             break;
     }
     return true;
